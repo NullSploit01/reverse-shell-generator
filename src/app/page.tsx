@@ -1,7 +1,9 @@
 import React from 'react'
 
+import NavBar from '@/components/organisms/navbar/navbar.organism'
+
 const HomePage = () => {
-  return <div>HomePage</div>
+  return <NavBar />
 }
 
 export default HomePage
