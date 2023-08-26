@@ -5,6 +5,7 @@ module.exports = {
     'universe/shared/typescript-analysis',
     'plugin:react-hooks/recommended'
   ],
+  plugins: ['unused-imports'],
   overrides: [
     {
       files: ['*.ts', '*.tsx', '*.d.ts'],
@@ -23,6 +24,7 @@ module.exports = {
     __dirname: true
   },
   rules: {
-    'no-console': 'error'
+    'no-console': 'error',
+    'unused-imports/no-unused-imports': 'error'
   }
 }

@@ -1,9 +1,15 @@
 import React from 'react'
 
-import NavBar from '@/components/organisms/navbar/navbar.organism'
+import MainContainer from '@/components/containers/main.container'
 
 const HomePage = () => {
-  return <NavBar />
+  return (
+    <MainContainer>
+      <div className="flex justify-center">
+        <p>Home Page</p>
+      </div>
+    </MainContainer>
+  )
 }
 
 export default HomePage
