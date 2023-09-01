@@ -8,7 +8,7 @@ type IMainContainerProps = {
 
 const MainContainer: React.FC<IMainContainerProps> = ({ children }) => {
   return (
-    <main className="h-screen bg-gray-300">
+    <main className="h-screen flex-1 bg-zinc-950">
       <NavBar />
       {children}
     </main>
