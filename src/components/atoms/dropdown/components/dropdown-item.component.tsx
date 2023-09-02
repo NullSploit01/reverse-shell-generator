@@ -6,7 +6,7 @@ type IDropdownItemProps = {
   onClick?: (value: string) => void
 }
 
-const DropdownItem: FC<IDropdownItemProps> = ({ label, onClick, value }) => {
+const DropdownItem: FC<IDropdownItemProps> = ({ label, value, onClick }) => {
   return (
     <a onClick={() => onClick && onClick(value)} className="dropdown-item text-sm">
       {label}

