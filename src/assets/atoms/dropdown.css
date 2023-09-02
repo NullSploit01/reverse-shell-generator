@@ -1,0 +1,11 @@
+/* Style the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  max-height: 250px; /* Set the maximum height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+}
