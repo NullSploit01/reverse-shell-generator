@@ -5,8 +5,8 @@ type IInputProps = {
   value?: string
   placeholder?: string
   size?: keyof typeof inputSizes
-  className: string
-  type: 'text' | 'number'
+  className?: string
+  type: 'text' | 'number' | 'search'
   color?: keyof typeof inputColors
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

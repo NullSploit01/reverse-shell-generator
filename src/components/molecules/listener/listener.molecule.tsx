@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
+import Button from '@/components/atoms/button/button.atom'
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
 import Popover from '@/components/atoms/popover/popover.atom'
 import TextArea from '@/components/atoms/textarea/textarea.atom'
@@ -44,7 +45,7 @@ const Listener = () => {
 
           <Popover label="Copied to Clipboard">
             <CopyToClipboard text={_listenerCommand}>
-              <button className="popover-trigger btn btn-outline-success m-2">Copy</button>
+              <Button outline color="success" label="Copy" className="popover-trigger m-2" />
             </CopyToClipboard>
           </Popover>
         </div>
