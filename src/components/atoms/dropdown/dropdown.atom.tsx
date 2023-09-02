@@ -3,23 +3,43 @@ import React, { FC } from 'react'
 import DropdownItem from './components/dropdown-item.component'
 import '@/assets/atoms/dropdown.css'
 import { IDropdownItem } from './interface'
+import Button from '../button/button.atom'
+import { IButtonProps } from '../button/interface'
 
-type IDropdownProps = {
-  label: string
+interface IDropdownProps extends IButtonProps {
   data: IDropdownItem[]
-  onClick?: (value: string) => void
+  onDropdownButtonClick?: (value: string) => void
 }
 
-const Dropdown: FC<IDropdownProps> = ({ label, data, onClick }) => {
+const Dropdown: FC<IDropdownProps> = ({
+  data,
+  label,
+  outline,
+  solid,
+  size = 'md',
+  className = '',
+  color = 'primary',
+  onDropdownButtonClick
+}) => {
   return (
     <div className="dropdown">
-      <label className="btn btn-solid-primary m-2" tabIndex={0}>
-        {label}
-      </label>
+      <Button
+        label={label}
+        color={color}
+        outline={outline}
+        solid={solid}
+        className={className}
+        size={size}
+      />
       <div className="dropdown-menu dropdown-menu-bottom-right">
         {data.map((item, index) => {
           return (
-            <DropdownItem key={index} onClick={onClick} label={item.label} value={item.value} />
+            <DropdownItem
+              key={index}
+              onClick={onDropdownButtonClick}
+              label={item.label}
+              value={item.value}
+            />
           )
         })}
       </div>

@@ -38,11 +38,12 @@ const Listener = () => {
         <TextArea value={_listenerCommand} />
         <div className="flex justify-between">
           <Dropdown
+            solid
+            className="m-2"
             data={LISTENER_TYPES}
             label={`Type: ${_listener.label}`}
-            onClick={onListenerChange}
+            onDropdownButtonClick={onListenerChange}
           />
-
           <Popover label="Copied to Clipboard">
             <CopyToClipboard text={_listenerCommand}>
               <Button outline color="success" label="Copy" className="popover-trigger m-2" />
