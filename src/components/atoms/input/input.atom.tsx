@@ -7,6 +7,7 @@ type IInputProps = {
   size?: keyof typeof inputSizes
   className: string
   type: 'text' | 'number'
+  color?: keyof typeof inputColors
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -19,23 +20,30 @@ const inputSizes = {
   xs: 'input-xs'
 }
 
+const inputColors = {
+  primary: 'input-primary',
+  secondary: 'input-secondary',
+  success: 'input-success',
+  warning: 'input-warning',
+  error: 'input-error'
+}
+
 const Input: FC<IInputProps> = ({
   value,
   placeholder,
   size = 'xl',
   type,
   className = '',
-  onChange,
-  ...rest
+  color = 'primary',
+  onChange
 }) => {
   return (
     <input
-      className={clsx(`input ${inputSizes[size]} ${className}`)}
+      className={clsx(`input ${inputColors[color]} ${inputSizes[size]} ${className}`)}
       value={value}
       placeholder={placeholder}
       type={type}
       onChange={onChange}
-      {...rest}
     />
   )
 }
