@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
+import Popover from '@/components/atoms/popover/popover.atom'
 import TextArea from '@/components/atoms/textarea/textarea.atom'
 import { useIPPortContext } from '@/context/ip-port.context'
 import { IListenerType, LISTENER_TYPES, getListenerCommand } from '@/data/listeners.data'
@@ -39,7 +41,12 @@ const Listener = () => {
             label={`Type: ${_listener.label}`}
             onClick={onListenerChange}
           />
-          <button className="btn btn-outline-success m-2">Copy</button>
+
+          <Popover label="Copied to Clipboard">
+            <CopyToClipboard text={_listenerCommand}>
+              <button className="popover-trigger btn btn-outline-success m-2">Copy</button>
+            </CopyToClipboard>
+          </Popover>
         </div>
       </div>
     </Fragment>
