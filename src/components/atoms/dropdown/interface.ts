@@ -1,4 +1,4 @@
-export type IDropdownItem = {
+export type IDataItem = {
   label: string
   value: string
 }

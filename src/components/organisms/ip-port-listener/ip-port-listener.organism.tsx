@@ -7,10 +7,10 @@ import Listener from '@/components/molecules/listener/listener.molecule'
 const IPPortListener = () => {
   return (
     <Fragment>
-      <Box>
+      <Box className="basis-1/2 ">
         <IPPort />
       </Box>
-      <Box>
+      <Box className="basis-1/2 ">
         <Listener />
       </Box>
     </Fragment>
