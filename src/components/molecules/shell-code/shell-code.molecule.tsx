@@ -7,13 +7,13 @@ type IShellCodeProps = {
   language?: string
 }
 
-const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'php' }) => {
+const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'bash' }) => {
   return (
     <div
       style={{ whiteSpace: 'pre-wrap', overflow: 'auto', maxHeight: '500px' }}
       className="text-break"
     >
-      <SyntaxHighlighter language={language} showLineNumbers wrapLongLines style={dark}>
+      <SyntaxHighlighter language={language} wrapLongLines style={dark}>
         {code}
       </SyntaxHighlighter>
     </div>

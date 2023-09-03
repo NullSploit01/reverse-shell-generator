@@ -31,7 +31,10 @@ const Shells = () => {
           <NavList onClick={onChangeShellCommand} data={shellCommandsData} size="lg" />
         </div>
         <Box className="basis-4/5 positiion-relative">
-          <ShellCode code={selectedShellCommand?.command} />
+          <ShellCode
+            code={selectedShellCommand?.command}
+            language={selectedShellCommand?.language}
+          />
         </Box>
       </div>
     </Box>
