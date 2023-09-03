@@ -1,33 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
-import { IDropdownItem } from '@/components/atoms/dropdown/interface'
 import Input from '@/components/atoms/input/input.atom'
-import { COMMAND_TYPES } from '@/data/shells.data'
+import { useShellContext } from '@/context/shell.context'
+import { SHELLS } from '@/data/shells.data'
 
 const ShellsHeader = () => {
-  const [_commandType, setCommandType] = React.useState<IDropdownItem>({ label: '', value: '' })
+  const { shellType, changeShellType } = useShellContext()
 
-  useEffect(() => {
-    setCommandType(COMMAND_TYPES[0])
-  }, [])
+  const onShellTypeChange = (key: string) => {
+    const shell = SHELLS.find((commandType) => commandType.value === key)
+    if (!shell) return
 
-  const onCommandTypeChange = (key: string) => {
-    const commandType = COMMAND_TYPES.find((commandType) => commandType.value === key)
-    setCommandType(commandType as IDropdownItem)
+    changeShellType(shell)
   }
 
   return (
     <div className="flex justify-between items-center px-5">
       <div className="flex">
-        <h1 className="text-2xl font-bold mr-5">{_commandType.label}</h1>
+        <h1 className="text-2xl font-bold mr-5">{shellType.label}</h1>
         <Dropdown
           label="Change"
           size="sm"
           outline
           color="warning"
-          data={COMMAND_TYPES}
-          onDropdownButtonClick={onCommandTypeChange}
+          data={SHELLS}
+          onDropdownButtonClick={onShellTypeChange}
         />
       </div>
       <Input type="search" color="secondary" placeholder="Search" />

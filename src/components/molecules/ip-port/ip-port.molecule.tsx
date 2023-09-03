@@ -31,7 +31,7 @@ const IPPort = () => {
   return (
     <Fragment>
       <b className="text-xl">IP and Port</b>
-      <div className="flex justify-center mt-4">
+      <div className="flex mt-4">
         <Input
           value={ip}
           type="text"
