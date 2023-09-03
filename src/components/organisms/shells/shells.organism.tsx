@@ -2,6 +2,7 @@ import React from 'react'
 
 import Box from '@/components/atoms/box/box.atom'
 import NavList from '@/components/atoms/nav-list/nav-list.atom'
+import ShellCode from '@/components/molecules/shell-code/shell-code.molecule'
 import ShellsHeader from '@/components/molecules/shells-header/shells-header.molecule'
 import { useShellContext } from '@/context/shell.context'
 
@@ -29,8 +30,8 @@ const Shells = () => {
         <div className="basis-1/5">
           <NavList onClick={onChangeShellCommand} data={shellCommandsData} size="lg" />
         </div>
-        <Box className="basis-4/5 ">
-          <div style={{ whiteSpace: 'pre-wrap' }}>{selectedShellCommand?.command}</div>
+        <Box className="basis-4/5 positiion-relative">
+          <ShellCode code={selectedShellCommand?.command} />
         </Box>
       </div>
     </Box>
