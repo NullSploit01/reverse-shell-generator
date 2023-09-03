@@ -7,7 +7,9 @@ import { useIPPortContext } from './ip-port.context'
 type IShellContext = {
   shellType: IShell
   shellCommands: IShellCommand[]
+  selectedShellCommand: IShellCommand
   changeShellType: (shellType: IShell) => void
+  changeSelectedShellCommand: (shellCommand: IShellCommand) => void
 }
 
 type IShellContextProviderProps = {
@@ -21,6 +23,9 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
 
   const [shellType, setShellType] = useState<IShell>({} as IShell)
   const [shellCommands, setShellCommands] = useState<IShellCommand[]>([])
+  const [selectedShellCommand, setSelectedShellCommand] = useState<IShellCommand>(
+    {} as IShellCommand
+  )
 
   useEffect(() => {
     //  ToDo: Update default shell from cache
@@ -29,6 +34,7 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
 
   useEffect(() => {
     const shellCommands = getShellCommandsWithIpAndPort(shellType, ip, port)
+    setSelectedShellCommand(shellCommands[0])
     setShellCommands(shellCommands as IShellCommand[])
   }, [shellType])
 
@@ -36,12 +42,18 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
     setShellType(shellType)
   }
 
+  const changeSelectedShellCommand = (shellCommand: IShellCommand) => {
+    setSelectedShellCommand(shellCommand)
+  }
+
   return (
     <ShellContext.Provider
       value={{
         shellType,
         shellCommands,
-        changeShellType
+        selectedShellCommand,
+        changeShellType,
+        changeSelectedShellCommand
       }}
     >
       {children}

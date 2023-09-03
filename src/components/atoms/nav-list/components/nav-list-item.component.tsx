@@ -7,6 +7,7 @@ type INavListItemProps = {
   item: IDataItem
   active?: boolean
   size: keyof typeof NavListItemSize
+  onClick?: (value: string) => void
 }
 
 export const NavListItemSize = {
@@ -15,10 +16,13 @@ export const NavListItemSize = {
   lg: 'text-lg'
 }
 
-const NavListItem: React.FC<INavListItemProps> = ({ item, active, size }) => {
+const NavListItem: React.FC<INavListItemProps> = ({ item, active, size, onClick }) => {
   return (
     <>
-      <li className={clsx(`${NavListItemSize[size]} menu-item`, { 'menu-active': active })}>
+      <li
+        onClick={() => onClick && onClick(item.value)}
+        className={clsx(`${NavListItemSize[size]} menu-item`, { 'menu-active': active })}
+      >
         {item.label}
       </li>
       <div className="divider my-0"></div>

@@ -6,21 +6,32 @@ import ShellsHeader from '@/components/molecules/shells-header/shells-header.mol
 import { useShellContext } from '@/context/shell.context'
 
 const Shells = () => {
-  const { shellCommands } = useShellContext()
+  const { shellCommands, selectedShellCommand, changeSelectedShellCommand } = useShellContext()
 
   const shellCommandsData = shellCommands.map((shellCommand) => ({
     label: shellCommand.name,
     value: shellCommand.command
   }))
 
+  const onChangeShellCommand = (shellCommand: string) => {
+    const selectedShellCommand = shellCommands.find(
+      (shellCommandItem) => shellCommandItem.command === shellCommand
+    )
+    if (selectedShellCommand) {
+      changeSelectedShellCommand(selectedShellCommand)
+    }
+  }
+
   return (
     <Box>
       <ShellsHeader />
       <div className="flex flex-row mt-5">
         <div className="basis-1/5">
-          <NavList data={shellCommandsData} size="lg" />
+          <NavList onClick={onChangeShellCommand} data={shellCommandsData} size="lg" />
         </div>
-        <Box className="basis-4/5 ">as</Box>
+        <Box className="basis-4/5 ">
+          <div style={{ whiteSpace: 'pre-wrap' }}>{selectedShellCommand?.command}</div>
+        </Box>
       </div>
     </Box>
   )
