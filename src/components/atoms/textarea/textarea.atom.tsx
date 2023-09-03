@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 
-type ITextAreaProps = {
-  value?: string
-}
+import { ITextAreaProps } from '@/types/components/atoms/textarea.type'
 
 const TextArea: FC<ITextAreaProps> = ({ value }) => {
   return (

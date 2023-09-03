@@ -1,39 +1,12 @@
-import { IDataItem } from '@/components/atoms/dropdown/interface'
-
-export type IShellCommand = {
-  name: string
-  command: string
-  meta: string[]
-  language: string
-}
-
-export type IShell = {
-  label: string
-  value: keyof typeof Shells
-}
-
-export type IShellType = {
-  label: string
-  value: string
-}
-
-export type IOS = {
-  label: string
-  value: string
-}
-
-enum Shells {
-  ReverseShell = 'ReverseShell',
-  BindShell = 'BindShell',
-  MSFVenomShell = 'MSFVenomShell',
-  HoaxShell = 'HoaxShell'
-}
-
-enum SupportedOS {
-  Linux = 'linux',
-  Mac = 'mac',
-  Windows = 'windows'
-}
+import { IDataItem } from '@/types/components/atoms/data.type'
+import {
+  SupportedOS,
+  IShell,
+  Shells,
+  IShellCommand,
+  IOS,
+  IShellType
+} from '@/types/data/shell.type'
 
 export const detectClientOS = () => {
   const userAgent = window.navigator.userAgent.toLowerCase()

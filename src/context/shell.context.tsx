@@ -1,34 +1,16 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 import {
-  IOS,
-  IShell,
-  IShellCommand,
-  IShellType,
   OS,
   SHELLS,
   SHELL_TYPES,
   detectClientOS,
   getShellCommandsWithIpAndPort
 } from '@/data/shells.data'
+import { IShellContext, IShellContextProviderProps } from '@/types/context/shell-context.type'
+import { IOS, IShell, IShellCommand, IShellType } from '@/types/data/shell.type'
 
 import { useIPPortContext } from './ip-port.context'
-
-type IShellContext = {
-  os: IOS
-  shell: IShell
-  shellCommands: IShellCommand[]
-  shellType: IShellType
-  selectedShellCommand: IShellCommand
-  changeOS: (os: IOS) => void
-  changeShell: (shell: IShell) => void
-  changeShellType: (shellType: IShellType) => void
-  changeSelectedShellCommand: (shellCommand: IShellCommand) => void
-}
-
-type IShellContextProviderProps = {
-  children: ReactNode
-}
 
 const ShellContext = createContext<IShellContext>({} as IShellContext)
 

@@ -1,15 +1,9 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
-type IIPPortContextProps = {
-  ip: string
-  port: string
-  setIP: (ip: string) => void
-  setPort: (port: string) => void
-}
-
-type IIPPortContextProviderProps = {
-  children: ReactNode
-}
+import {
+  IIPPortContextProps,
+  IIPPortContextProviderProps
+} from '@/types/context/ip-port-context.type'
 
 const IPPortContext = createContext<IIPPortContextProps>({} as IIPPortContextProps)
 

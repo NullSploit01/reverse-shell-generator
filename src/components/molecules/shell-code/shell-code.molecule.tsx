@@ -2,10 +2,7 @@ import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-type IShellCodeProps = {
-  code: string
-  language?: string
-}
+import { IShellCodeProps } from '@/types/components/molecules/shell-code.type'
 
 const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'bash' }) => {
   return (

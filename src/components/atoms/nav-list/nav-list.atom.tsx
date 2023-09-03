@@ -1,16 +1,10 @@
 import React from 'react'
 
-import NavListItem, { NavListItemSize } from './components/nav-list-item.component'
-import { IDataItem } from '../dropdown/interface'
-
 import '@/assets/atoms/navlist.css'
 import { useShellContext } from '@/context/shell.context'
+import { INavListProps } from '@/types/components/atoms/navlist.type'
 
-type INavListProps = {
-  data: IDataItem[]
-  size?: keyof typeof NavListItemSize
-  onClick?: (value: string) => void
-}
+import NavListItem from './components/nav-list-item.component'
 
 const NavList: React.FC<INavListProps> = ({ data, size = 'md', onClick }) => {
   const { selectedShellCommand } = useShellContext()

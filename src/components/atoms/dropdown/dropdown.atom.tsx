@@ -2,9 +2,11 @@ import React, { FC } from 'react'
 
 import DropdownItem from './components/dropdown-item.component'
 import '@/assets/atoms/dropdown.css'
-import { IDataItem } from './interface'
+
+import { IDataItem } from '@/types/components/atoms/data.type'
+import { IButtonProps } from '@/types/components/atoms/button.type'
+
 import Button from '../button/button.atom'
-import { IButtonProps } from '../button/interface'
 
 interface IDropdownProps extends IButtonProps {
   data: IDataItem[]

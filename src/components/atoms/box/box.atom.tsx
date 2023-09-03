@@ -1,9 +1,6 @@
 import React, { FC } from 'react'
 
-type IBoxProps = {
-  children: React.ReactNode
-  className?: string
-}
+import { IBoxProps } from '@/types/components/atoms/box.type'
 
 const Box: FC<IBoxProps> = ({ children, className = '' }) => {
   return (

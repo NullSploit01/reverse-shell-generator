@@ -1,10 +1,8 @@
 import React from 'react'
 
-import NavBar from '../organisms/navbar/navbar.organism'
+import { IMainContainerProps } from '@/types/components/containers/main-container.type'
 
-type IMainContainerProps = {
-  children: React.ReactNode
-}
+import NavBar from '../organisms/navbar/navbar.organism'
 
 const MainContainer: React.FC<IMainContainerProps> = ({ children }) => {
   return (

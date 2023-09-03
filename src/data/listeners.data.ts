@@ -1,12 +1,3 @@
-export type IListenerType = {
-  label: string
-  value: string
-}
-
-export type IListenerCommand = {
-  [value: string]: string
-}
-
 export const LISTENER_TYPES = [
   { label: 'Busybox Netcat', value: 'busybox nc' },
   { label: 'Netcat', value: 'nc' },
