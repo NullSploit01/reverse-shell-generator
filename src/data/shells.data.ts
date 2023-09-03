@@ -17,12 +17,56 @@ export type IShellType = {
   value: string
 }
 
+export type IOS = {
+  label: string
+  value: string
+}
+
 enum Shells {
   ReverseShell = 'ReverseShell',
   BindShell = 'BindShell',
   MSFVenomShell = 'MSFVenomShell',
   HoaxShell = 'HoaxShell'
 }
+
+enum SupportedOS {
+  Linux = 'linux',
+  Mac = 'mac',
+  Windows = 'windows'
+}
+
+export const detectClientOS = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase()
+
+  if (userAgent.includes('win')) {
+    return SupportedOS.Windows
+  } else if (userAgent.includes('linux')) {
+    return SupportedOS.Linux
+  } else if (userAgent.includes('mac')) {
+    return SupportedOS.Mac
+  } else {
+    return '*'
+  }
+}
+
+export const OS = [
+  {
+    label: 'Linux',
+    value: SupportedOS.Linux
+  },
+  {
+    label: 'Mac',
+    value: SupportedOS.Mac
+  },
+  {
+    label: 'Windows',
+    value: SupportedOS.Windows
+  },
+  {
+    label: 'All',
+    value: '*'
+  }
+]
 
 export const SHELL_TYPES: IDataItem[] = [
   {
@@ -791,26 +835,26 @@ export const HOAX_SHELLS: IShellCommand[] = [
   }
 ]
 
-export const getShells = (type: string) => {
+export const getShells = (type: string, os = '*') => {
   switch (type) {
     case Shells.ReverseShell:
-      return REVERSE_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
-        sh.meta.includes('windows')
+      return REVERSE_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
+        (sh) => sh.meta.includes(os) || os === '*'
       )
 
     case Shells.BindShell:
-      return BIND_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
-        sh.meta.includes('windows')
+      return BIND_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
+        (sh) => sh.meta.includes(os) || os === '*'
       )
 
     case Shells.MSFVenomShell:
-      return MSFVENOM_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
-        sh.meta.includes('windows')
+      return MSFVENOM_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
+        (sh) => sh.meta.includes(os) || os === '*'
       )
 
     case Shells.HoaxShell:
-      return HOAX_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
-        sh.meta.includes('windows')
+      return HOAX_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
+        (sh) => sh.meta.includes(os) || os === '*'
       )
 
     default:
@@ -822,9 +866,10 @@ export const getShellCommandsWithIpAndPort = (
   shell: IShell,
   ip: string,
   port: string,
-  shellType: string = '/bin/sh'
+  os: IOS,
+  shellType: IShellType
 ) => {
-  const shells = getShells(shell.value)
+  const shells = getShells(shell.value, os.value)
 
   return shells.map((shell) => {
     return {
@@ -832,7 +877,7 @@ export const getShellCommandsWithIpAndPort = (
       command: shell.command
         .replace(/{ip}/g, ip)
         .replace(/{port}/g, port)
-        .replace(/{shell}/g, shellType)
+        .replace(/{shell}/g, shellType.value)
     }
   })
 }

@@ -3,10 +3,10 @@ import React from 'react'
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
 import Input from '@/components/atoms/input/input.atom'
 import { useShellContext } from '@/context/shell.context'
-import { SHELLS, SHELL_TYPES } from '@/data/shells.data'
+import { OS, SHELLS, SHELL_TYPES } from '@/data/shells.data'
 
 const ShellsHeader = () => {
-  const { shell, changeShell, shellType, changeShellType } = useShellContext()
+  const { os, changeOS, shell, changeShell, shellType, changeShellType } = useShellContext()
 
   const onShellChange = (key: string) => {
     const shell = SHELLS.find((commandType) => commandType.value === key)
@@ -20,6 +20,13 @@ const ShellsHeader = () => {
     if (!shellType) return
 
     changeShellType(shellType)
+  }
+
+  const onOSChange = (key: string) => {
+    const os = OS.find((os) => os.value === key)
+    if (!os) return
+
+    changeOS(os)
   }
 
   return (
@@ -41,6 +48,7 @@ const ShellsHeader = () => {
         onDropdownButtonClick={onShellTypeChange}
         data={SHELL_TYPES}
       />
+      <Dropdown solid label={`OS: ${os.label}`} onDropdownButtonClick={onOSChange} data={OS} />
       <Input type="search" color="secondary" placeholder="Search" />
     </div>
   )
