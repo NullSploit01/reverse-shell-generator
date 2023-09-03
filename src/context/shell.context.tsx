@@ -1,14 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import {
-  OS,
-  SHELLS,
-  SHELL_TYPES,
-  detectClientOS,
-  getShellCommandsWithIpAndPort
-} from '@/data/shells.data'
+import { OS, SHELLS, SHELL_TYPES } from '@/data/shells.data'
 import { IShellContext, IShellContextProviderProps } from '@/types/context/shell-context.type'
 import { IOS, IShell, IShellCommand, IShellType } from '@/types/data/shell.type'
+import { detectClientOS, getShellCommandsWithIpAndPort } from '@/utils/data.util'
 
 import { useIPPortContext } from './ip-port.context'
 

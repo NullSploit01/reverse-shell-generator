@@ -6,8 +6,9 @@ import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
 import Popover from '@/components/atoms/popover/popover.atom'
 import TextArea from '@/components/atoms/textarea/textarea.atom'
 import { useIPPortContext } from '@/context/ip-port.context'
-import { LISTENER_TYPES, getListenerCommand } from '@/data/listeners.data'
+import { LISTENER_TYPES } from '@/data/listeners.data'
 import { IListenerType } from '@/types/data/listener.type'
+import { getListenerCommand } from '@/utils/data.util'
 
 const Listener = () => {
   const { port, ip } = useIPPortContext()
