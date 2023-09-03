@@ -1,14 +1,23 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
-import { IShell, IShellCommand, SHELLS, getShellCommandsWithIpAndPort } from '@/data/shells.data'
+import {
+  IShell,
+  IShellCommand,
+  IShellType,
+  SHELLS,
+  SHELL_TYPES,
+  getShellCommandsWithIpAndPort
+} from '@/data/shells.data'
 
 import { useIPPortContext } from './ip-port.context'
 
 type IShellContext = {
-  shellType: IShell
+  shell: IShell
   shellCommands: IShellCommand[]
+  shellType: IShellType
   selectedShellCommand: IShellCommand
-  changeShellType: (shellType: IShell) => void
+  changeShell: (shell: IShell) => void
+  changeShellType: (shellType: IShellType) => void
   changeSelectedShellCommand: (shellCommand: IShellCommand) => void
 }
 
@@ -21,24 +30,30 @@ const ShellContext = createContext<IShellContext>({} as IShellContext)
 export const ShellContextProvider = ({ children }: IShellContextProviderProps) => {
   const { ip, port } = useIPPortContext()
 
-  const [shellType, setShellType] = useState<IShell>({} as IShell)
+  const [shell, setShell] = useState<IShell>({} as IShell)
   const [shellCommands, setShellCommands] = useState<IShellCommand[]>([])
+  const [shellType, setShellType] = useState<IShellType>({} as IShellType)
   const [selectedShellCommand, setSelectedShellCommand] = useState<IShellCommand>(
     {} as IShellCommand
   )
 
   useEffect(() => {
     //  ToDo: Update default shell from cache
-    setShellType(SHELLS[0])
+    setShell(SHELLS[0])
+    setShellType(SHELL_TYPES[0])
   }, [])
 
   useEffect(() => {
-    const shellCommands = getShellCommandsWithIpAndPort(shellType, ip, port)
+    const shellCommands = getShellCommandsWithIpAndPort(shell, ip, port, shellType.value)
     setSelectedShellCommand(shellCommands[0])
     setShellCommands(shellCommands as IShellCommand[])
-  }, [shellType])
+  }, [shell, ip, port, shellType])
 
-  const changeShellType = (shellType: IShell) => {
+  const changeShell = (shell: IShell) => {
+    setShell(shell)
+  }
+
+  const changeShellType = (shellType: IShellType) => {
     setShellType(shellType)
   }
 
@@ -49,9 +64,11 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
   return (
     <ShellContext.Provider
       value={{
+        shell,
         shellType,
         shellCommands,
         selectedShellCommand,
+        changeShell,
         changeShellType,
         changeSelectedShellCommand
       }}

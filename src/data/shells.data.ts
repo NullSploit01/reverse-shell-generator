@@ -1,3 +1,5 @@
+import { IDataItem } from '@/components/atoms/dropdown/interface'
+
 export type IShellCommand = {
   name: string
   command: string
@@ -10,12 +12,84 @@ export type IShell = {
   value: keyof typeof Shells
 }
 
+export type IShellType = {
+  label: string
+  value: string
+}
+
 enum Shells {
   ReverseShell = 'ReverseShell',
   BindShell = 'BindShell',
   MSFVenomShell = 'MSFVenomShell',
   HoaxShell = 'HoaxShell'
 }
+
+export const SHELL_TYPES: IDataItem[] = [
+  {
+    label: '/bin/bash',
+    value: '/bin/bash'
+  },
+  {
+    label: '/bin/sh',
+    value: '/bin/sh'
+  },
+  {
+    label: 'ash',
+    value: 'ash'
+  },
+  {
+    label: 'bash',
+    value: 'bash'
+  },
+  {
+    label: 'bsh',
+    value: 'bsh'
+  },
+  {
+    label: 'cmd',
+    value: 'cmd'
+  },
+  {
+    label: 'csh',
+    value: 'csh'
+  },
+  {
+    label: 'dash',
+    value: 'dash'
+  },
+  {
+    label: 'ksh',
+    value: 'ksh'
+  },
+  {
+    label: 'mksh',
+    value: 'mksh'
+  },
+  {
+    label: 'pdksh',
+    value: 'pdksh'
+  },
+  {
+    label: 'powershell',
+    value: 'powershell'
+  },
+  {
+    label: 'pwsh',
+    value: 'pwsh'
+  },
+  {
+    label: 'sh',
+    value: 'sh'
+  },
+  {
+    label: 'tcsh',
+    value: 'tcsh'
+  },
+  {
+    label: 'zsh',
+    value: 'zsh'
+  }
+]
 
 export const SHELLS: IShell[] = [
   { label: 'Reverse Shells', value: Shells.ReverseShell },
@@ -720,29 +794,45 @@ export const HOAX_SHELLS: IShellCommand[] = [
 export const getShells = (type: string) => {
   switch (type) {
     case Shells.ReverseShell:
-      return REVERSE_SHELLS.sort((a, b) => a.name.localeCompare(b.name))
+      return REVERSE_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
+        sh.meta.includes('windows')
+      )
 
     case Shells.BindShell:
-      return BIND_SHELLS.sort((a, b) => a.name.localeCompare(b.name))
+      return BIND_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
+        sh.meta.includes('windows')
+      )
 
     case Shells.MSFVenomShell:
-      return MSFVENOM_SHELLS.sort((a, b) => a.name.localeCompare(b.name))
+      return MSFVENOM_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
+        sh.meta.includes('windows')
+      )
 
     case Shells.HoaxShell:
-      return HOAX_SHELLS.sort((a, b) => a.name.localeCompare(b.name))
+      return HOAX_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter((sh) =>
+        sh.meta.includes('windows')
+      )
 
     default:
       return []
   }
 }
 
-export const getShellCommandsWithIpAndPort = (shellType: IShell, ip: string, port: string) => {
-  const shells = getShells(shellType.value)
+export const getShellCommandsWithIpAndPort = (
+  shell: IShell,
+  ip: string,
+  port: string,
+  shellType: string = '/bin/sh'
+) => {
+  const shells = getShells(shell.value)
 
   return shells.map((shell) => {
     return {
       ...shell,
-      command: shell.command.replace(/{ip}/g, ip).replace(/{port}/g, port) || ''
+      command: shell.command
+        .replace(/{ip}/g, ip)
+        .replace(/{port}/g, port)
+        .replace(/{shell}/g, shellType)
     }
   })
 }

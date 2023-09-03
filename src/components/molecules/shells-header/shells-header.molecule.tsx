@@ -3,31 +3,44 @@ import React from 'react'
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
 import Input from '@/components/atoms/input/input.atom'
 import { useShellContext } from '@/context/shell.context'
-import { SHELLS } from '@/data/shells.data'
+import { SHELLS, SHELL_TYPES } from '@/data/shells.data'
 
 const ShellsHeader = () => {
-  const { shellType, changeShellType } = useShellContext()
+  const { shell, changeShell, shellType, changeShellType } = useShellContext()
 
-  const onShellTypeChange = (key: string) => {
+  const onShellChange = (key: string) => {
     const shell = SHELLS.find((commandType) => commandType.value === key)
     if (!shell) return
 
-    changeShellType(shell)
+    changeShell(shell)
+  }
+
+  const onShellTypeChange = (key: string) => {
+    const shellType = SHELL_TYPES.find((shellType) => shellType.value === key)
+    if (!shellType) return
+
+    changeShellType(shellType)
   }
 
   return (
     <div className="flex justify-between items-center px-5">
       <div className="flex">
-        <h1 className="text-2xl font-bold mr-5">{shellType.label}</h1>
+        <h1 className="text-2xl font-bold mr-5">{shell.label}</h1>
         <Dropdown
           label="Change"
           size="sm"
           outline
           color="warning"
           data={SHELLS}
-          onDropdownButtonClick={onShellTypeChange}
+          onDropdownButtonClick={onShellChange}
         />
       </div>
+      <Dropdown
+        solid
+        label={`Shell: ${shellType.label}`}
+        onDropdownButtonClick={onShellTypeChange}
+        data={SHELL_TYPES}
+      />
       <Input type="search" color="secondary" placeholder="Search" />
     </div>
   )
