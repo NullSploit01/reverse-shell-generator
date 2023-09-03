@@ -9,7 +9,7 @@ export const getListenerCommand = (type: string, port: string, ip: string) => {
     return ''
   }
 
-  return command.replace('{port}', port).replace('{ip}', ip || '')
+  return command.replace('{port}', port).replace('{ip}', ip)
 }
 
 export const detectClientOS = () => {

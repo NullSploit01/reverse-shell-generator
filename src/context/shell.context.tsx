@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { OS, SHELLS, SHELL_TYPES } from '@/data/shells.data'
+import { DefaultData } from '@/data/default.data'
+import { OS } from '@/data/shells.data'
 import { IShellContext, IShellContextProviderProps } from '@/types/context/shell-context.type'
 import { IOS, IShell, IShellCommand, IShellType } from '@/types/data/shell.type'
 import { detectClientOS, getShellCommandsWithIpAndPort } from '@/utils/data.util'
@@ -12,10 +13,10 @@ const ShellContext = createContext<IShellContext>({} as IShellContext)
 export const ShellContextProvider = ({ children }: IShellContextProviderProps) => {
   const { ip, port } = useIPPortContext()
 
-  const [os, setOs] = useState<IOS>({} as IOS)
-  const [shell, setShell] = useState<IShell>({} as IShell)
+  const [os, setOs] = useState<IOS>(DefaultData.os)
+  const [shell, setShell] = useState<IShell>(DefaultData.shell)
   const [shellCommands, setShellCommands] = useState<IShellCommand[]>([])
-  const [shellType, setShellType] = useState<IShellType>({} as IShellType)
+  const [shellType, setShellType] = useState<IShellType>(DefaultData.shellType)
   const [selectedShellCommand, setSelectedShellCommand] = useState<IShellCommand>(
     {} as IShellCommand
   )
@@ -23,16 +24,18 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
   useEffect(() => {
     const detectedOs = OS.find((os) => os.value === detectClientOS())
 
-    if (!detectedOs) return
-
-    setOs(detectedOs)
-    setShell(SHELLS[0])
-    setShellType(SHELL_TYPES[0])
+    if (detectedOs) {
+      changeOS(detectedOs)
+    }
   }, [])
 
-  useEffect(() => {
+  useMemo(() => {
     const shellCommands = getShellCommandsWithIpAndPort(shell, ip, port, os, shellType)
-    setSelectedShellCommand(shellCommands[0])
+
+    const currentSelectedShellCommand = shellCommands.find(
+      (sh) => sh.name === selectedShellCommand.name
+    )
+    setSelectedShellCommand(currentSelectedShellCommand || shellCommands[0])
     setShellCommands(shellCommands as IShellCommand[])
   }, [shell, ip, port, shellType, os])
 
