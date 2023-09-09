@@ -1,5 +1,5 @@
 export type IShellCodeProps = {
-    code: string
-    name: string
-    language?: string
+  code: string
+  name: string
+  language?: string
 }

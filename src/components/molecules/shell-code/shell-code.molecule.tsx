@@ -9,26 +9,26 @@ import { downloadTextFile } from '@/utils/general.util'
 import CopyButton from '../copy-button/copy-button.molecule'
 
 const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'bash', name }) => {
-    const handleDownload = () => {
-        downloadTextFile(code, name)
-    }
+  const handleDownload = () => {
+    downloadTextFile(code, name)
+  }
 
-    return (
-        <div>
-            <div className="flex items-center justify-center lg:justify-end mb-2">
-                <CopyButton label="Copy" textToCopy={code} />
-                <Button onClick={handleDownload} outline label="Download" />
-            </div>
-            <div
-                style={{ whiteSpace: 'pre-wrap', overflow: 'auto', maxHeight: '500px' }}
-                className="text-break"
-            >
-                <SyntaxHighlighter language={language} wrapLongLines style={dark}>
-                    {code}
-                </SyntaxHighlighter>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <div className="flex items-center justify-center lg:justify-end mb-2">
+        <CopyButton label="Copy" textToCopy={code} />
+        <Button onClick={handleDownload} outline label="Download" />
+      </div>
+      <div
+        style={{ whiteSpace: 'pre-wrap', overflow: 'auto', maxHeight: '500px' }}
+        className="text-break"
+      >
+        <SyntaxHighlighter language={language} wrapLongLines style={dark}>
+          {code}
+        </SyntaxHighlighter>
+      </div>
+    </div>
+  )
 }
 
 export default ShellCode
