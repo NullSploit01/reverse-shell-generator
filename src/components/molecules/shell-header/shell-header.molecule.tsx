@@ -11,7 +11,7 @@ type IShellHeaderProps = {
   onSearchQueryChange: (value: string) => void
 }
 
-const ShellsHeader: React.FC<IShellHeaderProps> = ({ onSearchQueryChange }) => {
+const ShellHeader: React.FC<IShellHeaderProps> = ({ onSearchQueryChange }) => {
   const { os, changeOS, shell, changeShell, shellType, changeShellType } = useShellContext()
 
   const onShellChange = (key: string) => {
@@ -80,4 +80,4 @@ const ShellsHeader: React.FC<IShellHeaderProps> = ({ onSearchQueryChange }) => {
   )
 }
 
-export default ShellsHeader
+export default ShellHeader

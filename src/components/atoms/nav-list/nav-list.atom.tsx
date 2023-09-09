@@ -12,6 +12,7 @@ const NavList: React.FC<INavListProps> = ({ data, size = 'md', onClick }) => {
     <nav className="menu bg-gray-2 p-2 rounded-md">
       <section className="menu-section">
         <ul className="menu-items">
+          {data.length === 0 && <p className="text-center">Nope, Try Again!</p>}
           {data.map((item, index) => (
             <NavListItem
               key={index}

@@ -1,3 +1,3 @@
 export type ITextAreaProps = {
-  value?: string
+  value?: any
 }
