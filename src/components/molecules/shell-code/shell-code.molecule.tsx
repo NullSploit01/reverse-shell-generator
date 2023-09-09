@@ -15,7 +15,7 @@ const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'bash', name })
 
     return (
         <div>
-            <div className="flex items-center justify-end mb-2">
+            <div className="flex items-center justify-center lg:justify-end mb-2">
                 <CopyButton label="Copy" textToCopy={code} />
                 <Button onClick={handleDownload} outline label="Download" />
             </div>

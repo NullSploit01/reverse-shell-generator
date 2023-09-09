@@ -13,7 +13,7 @@ const HomePage = () => {
         <IPPortContextProvider>
             <ShellContextProvider>
                 <MainContainer>
-                    <div className="flex flex-row">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <IPPortListener />
                     </div>
                     <div className="mt-10">

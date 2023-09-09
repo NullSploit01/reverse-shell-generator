@@ -30,32 +30,61 @@ const ShellsHeader = () => {
     }
 
     return (
-        <div className="flex justify-between items-center px-5">
-            <div className="flex">
-                <h1 className="text-2xl font-bold mr-5">{shell.label}</h1>
-                <Dropdown
-                    label="Change"
-                    size="sm"
-                    outline
-                    color="warning"
-                    data={SHELLS}
-                    onDropdownButtonClick={onShellChange}
-                />
+        <nav className="px-2 my-2 md:my-5 md:px-5">
+            <div className="container mx-auto flex justify-between items-center">
+                <div className="flex items-center">
+                    <h1 className="lg:text-2xl font-bold lg:mr-5 mr-2">{shell.label}</h1>
+                    <Dropdown
+                        label="Change"
+                        size="xs"
+                        outline
+                        color="warning"
+                        data={SHELLS}
+                        onDropdownButtonClick={onShellChange}
+                    />
+                </div>
+                <div className="md:hidden">
+                    <Dropdown
+                        outline
+                        size="sm"
+                        position="bottomLeft"
+                        color="secondary"
+                        label="Menu"
+                        data={[
+                            {
+                                label: (
+                                    <Input type="search" color="secondary" placeholder="Search" />
+                                ),
+                                value: 'search'
+                            }
+                        ]}
+                    />
+                </div>
+                <div className="md:flex hidden">
+                    <ul className="md:flex space-x-4">
+                        <span>
+                            <Dropdown
+                                solid
+                                label={`Shell: ${shellType.label}`}
+                                onDropdownButtonClick={onShellTypeChange}
+                                data={SHELL_TYPES}
+                            />
+                        </span>
+                        <span>
+                            <Dropdown
+                                solid
+                                label={`OS: ${os.label}`}
+                                onDropdownButtonClick={onOSChange}
+                                data={OS}
+                            />
+                        </span>
+                        <span>
+                            <Input type="search" color="secondary" placeholder="Search" />
+                        </span>
+                    </ul>
+                </div>
             </div>
-            <Dropdown
-                solid
-                label={`Shell: ${shellType.label}`}
-                onDropdownButtonClick={onShellTypeChange}
-                data={SHELL_TYPES}
-            />
-            <Dropdown
-                solid
-                label={`OS: ${os.label}`}
-                onDropdownButtonClick={onOSChange}
-                data={OS}
-            />
-            <Input type="search" color="secondary" placeholder="Search" />
-        </div>
+        </nav>
     )
 }
 

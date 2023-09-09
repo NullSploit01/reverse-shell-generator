@@ -12,6 +12,7 @@ const Dropdown: FC<IDropdownProps> = ({
     label,
     outline,
     solid,
+    position = 'bottomRight',
     size = 'md',
     className = '',
     color = 'primary',
@@ -27,7 +28,7 @@ const Dropdown: FC<IDropdownProps> = ({
                 className={className}
                 size={size}
             />
-            <div className="dropdown-menu dropdown-menu-bottom-right">
+            <div className={`dropdown-menu ${position}`}>
                 {data.map((item, index) => {
                     return (
                         <DropdownItem

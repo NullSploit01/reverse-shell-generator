@@ -26,11 +26,11 @@ const Shells = () => {
     return (
         <Box>
             <ShellsHeader />
-            <div className="flex flex-row mt-5">
-                <div className="basis-1/5">
+            <div className="lg:flex">
+                <div className="lg:w-1/4 lg:px-4 py-4 px-2">
                     <NavList onClick={onChangeShellCommand} data={shellCommandsData} size="lg" />
                 </div>
-                <Box className="basis-4/5 positiion-relative overflow-hidden">
+                <Box className="lg:w-3/4 lg:px-4 py-4 px-2 positiion-relative overflow-hidden">
                     <ShellCode
                         name={selectedShellCommand?.name}
                         code={selectedShellCommand?.command}
