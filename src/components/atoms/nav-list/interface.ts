@@ -1,4 +1,4 @@
-import { IDataItem } from '../dropdown/data.type'
+import { IDataItem } from '../dropdown/interface'
 
 export type INavListItemProps = {
   item: IDataItem

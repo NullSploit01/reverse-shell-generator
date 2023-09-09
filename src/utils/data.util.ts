@@ -1,6 +1,6 @@
 import { SupportedOS, Shells, IShell, IOS, IShellType } from '@/data/interface'
 import { LISTENER_COMMANDS } from '@/data/listeners.data'
-import { REVERSE_SHELLS, BIND_SHELLS, MSFVENOM_SHELLS, HOAX_SHELLS } from '@/data/shells.data'
+import { REVERSE_SHELLS, BIND_SHELLS, MSFVENOM_SHELLS } from '@/data/shells.data'
 
 export const getListenerCommand = (type: string, port: string, ip: string) => {
   const command = LISTENER_COMMANDS.find((item) => item.key === type)?.value
@@ -40,11 +40,6 @@ export const getShells = (type: string, os = '*') => {
 
     case Shells.MSFVenomShell:
       return MSFVENOM_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
-        (sh) => sh.meta.includes(os) || os === '*'
-      )
-
-    case Shells.HoaxShell:
-      return HOAX_SHELLS.sort((a, b) => a.name.localeCompare(b.name)).filter(
         (sh) => sh.meta.includes(os) || os === '*'
       )
 
