@@ -1,12 +1,12 @@
 import React from 'react'
 
 import {
-  ButtonSizes,
   ButtonColors,
-  SolidButtonColors,
+  ButtonSizes,
+  IButtonProps,
   OutlineButtonColors,
-  IButtonProps
-} from '@/types/components/atoms/button.type'
+  SolidButtonColors
+} from './interface'
 
 const Button: React.FC<IButtonProps> = ({
   label,

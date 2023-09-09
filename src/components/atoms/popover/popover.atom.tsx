@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IPopoverProps, PopoverPositions } from '@/types/components/atoms/popover.type'
+import { IPopoverProps, PopoverPositions } from '@/components/atoms/popover/interface'
 
 const Popover: React.FC<IPopoverProps> = ({ children, label, position = 'bottomLeft' }) => {
   return (

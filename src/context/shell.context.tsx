@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { DefaultData } from '@/data/default.data'
+import { IOS, IShell, IShellCommand, IShellType } from '@/data/interface'
 import { OS } from '@/data/shells.data'
-import { IShellContext, IShellContextProviderProps } from '@/types/context/shell-context.type'
-import { IOS, IShell, IShellCommand, IShellType } from '@/types/data/shell.type'
 import { detectClientOS, getShellCommandsWithIpAndPort } from '@/utils/data.util'
 
+import { IShellContext, IShellContextProviderProps } from './interface'
 import { useIPPortContext } from './ip-port.context'
 
 const ShellContext = createContext<IShellContext>({} as IShellContext)

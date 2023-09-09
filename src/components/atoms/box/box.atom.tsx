@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { IBoxProps } from '@/types/components/atoms/box.type'
+import { IBoxProps } from '@/components/atoms/box/interface'
 
 const Box: FC<IBoxProps> = ({ children, className = '' }) => {
   return (

@@ -1,5 +1,6 @@
-import { IDataItem } from '@/types/components/atoms/data.type'
-import { SupportedOS, IShell, Shells, IShellCommand } from '@/types/data/shell.type'
+import { IDataItem } from '@/components/atoms/dropdown/interface'
+
+import { SupportedOS, IShell, Shells, IShellCommand } from './interface'
 
 export const OS = [
   {

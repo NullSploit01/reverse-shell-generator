@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IMainContainerProps } from '@/types/components/containers/main-container.type'
+import { IMainContainerProps } from '@/components/containers/interface'
 
 import NavBar from '../organisms/navbar/navbar.organism'
 

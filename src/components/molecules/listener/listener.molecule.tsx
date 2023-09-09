@@ -7,8 +7,8 @@ import Popover from '@/components/atoms/popover/popover.atom'
 import TextArea from '@/components/atoms/textarea/textarea.atom'
 import { useIPPortContext } from '@/context/ip-port.context'
 import { DefaultData } from '@/data/default.data'
+import { IListenerType } from '@/data/interface'
 import { LISTENER_TYPES } from '@/data/listeners.data'
-import { IListenerType } from '@/types/data/listener.type'
 import { getListenerCommand } from '@/utils/data.util'
 
 const Listener = () => {

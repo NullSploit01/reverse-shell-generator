@@ -1,6 +1,20 @@
 import { ReactNode } from 'react'
 
-import { IOS, IShell, IShellCommand, IShellType } from '../data/shell.type'
+import { IOS, IShell, IShellCommand, IShellType } from '@/data/interface'
+
+export type IIPPortContextProps = {
+  ip: string
+  port: string
+  isIpPortValid: IIPPortValidation
+  changeIP: (ip: string) => void
+  changePort: (port: string) => void
+}
+
+export type IIPPortContextProviderProps = {
+  children: ReactNode
+}
+
+export type IIPPortValidation = { ip: boolean; port: boolean }
 
 export type IShellContext = {
   os: IOS

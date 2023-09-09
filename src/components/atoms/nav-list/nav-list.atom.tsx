@@ -1,8 +1,8 @@
 import React from 'react'
 
 import '@/assets/atoms/navlist.css'
+import { INavListProps } from '@/components/atoms/nav-list/interface'
 import { useShellContext } from '@/context/shell.context'
-import { INavListProps } from '@/types/components/atoms/navlist.type'
 
 import NavListItem from './components/nav-list-item.component'
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { FC } from 'react'
 
-import { IInputProps, inputColors, inputSizes } from '@/types/components/atoms/input.type'
+import { IInputProps, inputColors, inputSizes } from '@/components/atoms/input/interface'
 
 const Input: FC<IInputProps> = ({
   value,

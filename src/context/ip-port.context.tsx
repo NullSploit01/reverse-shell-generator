@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from 'react'
 
-import { DefaultData } from '@/data/default.data'
 import {
   IIPPortContextProps,
   IIPPortContextProviderProps,
   IIPPortValidation
-} from '@/types/context/ip-port-context.type'
+} from '@/context/interface'
+import { DefaultData } from '@/data/default.data'
 
 const IPPortContext = createContext<IIPPortContextProps>({} as IIPPortContextProps)
 

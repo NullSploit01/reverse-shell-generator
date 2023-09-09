@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
 
-import { INavListItemProps, NavListItemSize } from '@/types/components/atoms/navlist.type'
+import { INavListItemProps, NavListItemSize } from '@/components/atoms/nav-list/interface'
 
 const NavListItem: React.FC<INavListItemProps> = ({ item, active, size, onClick }) => {
   return (
