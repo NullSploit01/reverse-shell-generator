@@ -1,11 +1,11 @@
 import { IButtonProps } from '../button/interface'
 
 export interface IDropdownProps extends IButtonProps {
-  data: IDataItem[]
-  onDropdownButtonClick?: (value: string) => void
+    data: IDataItem[]
+    onDropdownButtonClick?: (value: string) => void
 }
 
 export type IDataItem = {
-  label: string
-  value: string
+    label: string
+    value: string
 }
