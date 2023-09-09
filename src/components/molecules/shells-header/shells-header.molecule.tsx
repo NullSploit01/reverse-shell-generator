@@ -1,13 +1,17 @@
 import React from 'react'
 
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
-import Input from '@/components/atoms/input/input.atom'
 import { useShellContext } from '@/context/shell.context'
 import { OS, SHELLS, SHELL_TYPES } from '@/data/shells.data'
 
+import SearchBar from '../../atoms/search-bar/search-bar.atom'
 import ShellMenu from '../shell-menu/shell-menu.molecule'
 
-const ShellsHeader = () => {
+type IShellHeaderProps = {
+  onSearchQueryChange: (value: string) => void
+}
+
+const ShellsHeader: React.FC<IShellHeaderProps> = ({ onSearchQueryChange }) => {
   const { os, changeOS, shell, changeShell, shellType, changeShellType } = useShellContext()
 
   const onShellChange = (key: string) => {
@@ -46,7 +50,7 @@ const ShellsHeader = () => {
           />
         </div>
         <div className="md:hidden">
-          <ShellMenu />
+          <ShellMenu onSearchQueryChange={onSearchQueryChange} />
         </div>
         <div className="md:flex hidden">
           <ul className="md:flex space-x-4">
@@ -67,7 +71,7 @@ const ShellsHeader = () => {
               />
             </span>
             <span>
-              <Input type="search" color="secondary" placeholder="Search" />
+              <SearchBar onChange={onSearchQueryChange} />
             </span>
           </ul>
         </div>

@@ -1,12 +1,17 @@
 import React from 'react'
 
 import Dropdown from '@/components/atoms/dropdown/dropdown.atom'
-import Input from '@/components/atoms/input/input.atom'
 import Menu from '@/components/atoms/menu/menu.atom'
 import { useShellContext } from '@/context/shell.context'
 import { OS } from '@/data/shells.data'
 
-const ShellMenu = () => {
+import SearchBar from '../../atoms/search-bar/search-bar.atom'
+
+type IShellMenuProps = {
+  onSearchQueryChange: (value: string) => void
+}
+
+const ShellMenu: React.FC<IShellMenuProps> = ({ onSearchQueryChange }) => {
   const { os, changeOS } = useShellContext()
 
   const handleClick = (value: string) => {
@@ -25,7 +30,7 @@ const ShellMenu = () => {
       label="≡"
       data={[
         {
-          label: <Input type="search" color="secondary" placeholder="Search" />,
+          label: <SearchBar onChange={onSearchQueryChange} />,
           value: 'search'
         },
         {
