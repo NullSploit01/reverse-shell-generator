@@ -37,7 +37,7 @@ export const ShellContextProvider = ({ children }: IShellContextProviderProps) =
     )
     setSelectedShellCommand(currentSelectedShellCommand ?? shellCommands[0])
     setShellCommands(shellCommands as IShellCommand[])
-  }, [shell, ip, port, shellType, os, selectedShellCommand.name])
+  }, [shell, ip, port, shellType, os])
 
   const changeShell = (shell: IShell) => {
     setShell(shell)

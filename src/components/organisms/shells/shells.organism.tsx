@@ -22,7 +22,7 @@ const Shells = () => {
 
     shellCommandsData.current = mappedShellCommandsData
     setFilteredShellCommands(mappedShellCommandsData)
-  }, [os, shellType, shellCommands])
+  }, [os, shellType])
 
   const handleSearchQueryChange = (searchQuery: string) => {
     if (!searchQuery.trim()) {
