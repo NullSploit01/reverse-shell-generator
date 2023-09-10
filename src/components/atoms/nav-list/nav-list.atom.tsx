@@ -9,7 +9,7 @@ import NavListItem from './components/nav-list-item.component'
 const NavList: React.FC<INavListProps> = ({ data, size = 'md', onClick }) => {
   const { selectedShellCommand } = useShellContext()
   return (
-    <nav className="menu bg-gray-2 p-2 rounded-md">
+    <nav className="menu p-2 rounded-md">
       <section className="menu-section">
         <ul className="menu-items">
           {data.length === 0 && <p className="text-center">Nope, Try Again!</p>}

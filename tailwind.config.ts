@@ -14,6 +14,26 @@ const config: Config = {
       }
     }
   },
-  plugins: [require('rippleui')]
+  plugins: [require('rippleui')],
+  rippleui: {
+    themes: [
+      {
+        themeName: 'light',
+        colorScheme: 'light',
+        colors: {
+          neutral: '#FFF6EA',
+          backgroundPrimary: '#FAF3F0'
+        }
+      },
+      {
+        themeName: 'dark',
+        colorScheme: 'dark',
+        colors: {
+          neutral: '#323232',
+          backgroundPrimary: '#212121'
+        }
+      }
+    ]
+  }
 }
 export default config
