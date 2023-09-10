@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { dark, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 import Button from '@/components/atoms/button/button.atom'
 import { IShellCodeProps } from '@/components/molecules/shell-code/interface'
+import { useThemeDetector } from '@/hooks/use-theme-detector.hook'
 import { downloadTextFile } from '@/utils/general.util'
 
 import CopyButton from '../copy-button/copy-button.molecule'
 
 const ShellCode: React.FC<IShellCodeProps> = ({ code, language = 'bash', name }) => {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('light')
-
-  useEffect(() => {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-      const newColorScheme = event.matches ? 'dark' : 'light'
-      setTheme(newColorScheme)
-    })
-  }, [])
+  const theme = useThemeDetector()
 
   const handleDownload = () => {
     downloadTextFile(code, name)
