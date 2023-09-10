@@ -9,7 +9,7 @@ import { useShellContext } from '@/context/shell.context'
 
 const Shells = () => {
   const shellCommandsData = useRef<IDataItem[]>([])
-  const { shellCommands, selectedShellCommand, changeSelectedShellCommand, os, shellType } =
+  const { shellCommands, selectedShellCommand, changeSelectedShellCommand, os, shellType, shell } =
     useShellContext()
 
   const [filteredShellCommands, setFilteredShellCommands] = React.useState<IDataItem[]>([])
@@ -22,7 +22,7 @@ const Shells = () => {
 
     shellCommandsData.current = mappedShellCommandsData
     setFilteredShellCommands(mappedShellCommandsData)
-  }, [os, shellType])
+  }, [os, shellType, shell])
 
   const handleSearchQueryChange = (searchQuery: string) => {
     if (!searchQuery.trim()) {
